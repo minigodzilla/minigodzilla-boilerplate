@@ -71,12 +71,6 @@ function fonts() {
 		.pipe(gulp.dest('public/assets/fonts/'));
 }
 
-function fontAwesome() {
-    return gulp.src('./node_modules/@fortawesome/**/*')
-		.pipe(gulp.dest('public/assets/vendor/'));
-}
-
-
 function serve() {
     browserSync.init({
         open: true,
@@ -97,7 +91,6 @@ function watchFiles() {
     gulp.watch('src/assets/**/*.js', gulp.series(js, browserSyncReload));
     gulp.watch('src/assets/img/**/*.*', gulp.series(img));
     gulp.watch('src/assets/**/*.{eot,svg,ttf,woff,woff2}', gulp.series(fonts));
-    gulp.watch('src/assets/vendor/**/*.*', gulp.series(fontAwesome));
 
     return;
 }
@@ -111,7 +104,10 @@ exports.css = css;
 exports.html = html;
 exports.js = js;
 exports.fonts = fonts;
-exports.fontAwesome = fontAwesome;
 exports.del = del;
-exports.serve = gulp.parallel(html, css, js, img, fonts, fontAwesome, watchFiles, serve);
-exports.default = gulp.series(del, html, css, js, fonts, img, fontAwesome);
+
+// this is the serve 
+exports.default = gulp.parallel(html, css, js, img, fonts, watchFiles, serve);
+
+// this is the build task
+exports.build = gulp.series(del, html, css, js, fonts, img);

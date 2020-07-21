@@ -1,11 +1,11 @@
 {
   "name": "minigodzilla-boilerplate",
   "version": "1.0.0",
-  "description": "Dev boilerplate with SASS, Bootstrap 4, Gulp",
+  "description": "Web dev boilerplate with SASS, Bootstrap 4, Gulp",
   "author": "",
   "scripts": {
-    "build": "gulp",
-    "start": "gulp serve",
+    "start": "gulp",
+    "build": "gulp build",
     "prod": "cross-env NODE_ENV=prod gulp"
   },
   "devDependencies": {
